@@ -569,6 +569,17 @@ footer p{margin:0;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.18em
   .thesis p,.hero-note,.sec-head p,.lede,.case-body p,.case-body ol li,
   .mini p,.did li,.practice p,.cta-in .sub,.pull{hyphenate-limit-chars:6 3 2}
 }
+
+/* Justification needs enough words per line to distribute space evenly.
+   The summary ran 19.5px in a ~330px column - roughly four words a line,
+   which stretches into visible rivers. Smaller type, more words, tighter set. */
+@media (max-width:900px){
+  .thesis p{font-size:17px;line-height:1.68}
+  .pull{font-size:clamp(19px,5vw,23px);padding-left:18px}
+  .lede{font-size:16.5px}
+  .case-body p,.case-body ol li{font-size:15.5px}
+  .did li{font-size:15.5px}
+}
 </style>
 
 <div class="prog" id="prog"></div>
