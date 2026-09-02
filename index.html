@@ -536,6 +536,39 @@ footer p{margin:0;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.18em
   .sec-head h2 em,.cta-in h2 em,.tiles .n,.metrics .n,.metricrow .n,
   .case summary,.mini a.gh,.job-when b,.tag.hot,.fcount{text-shadow:none}
 }
+
+/* ================= justified prose ================= */
+/* Justify the running text only. Headings, labels, chips, buttons and
+   monospace slugs stay ranged-left: justifying short lines opens ugly gaps.
+   Automatic hyphenation is essential here - without it a narrow phone
+   column tears into rivers of white space. */
+.thesis p,
+.hero-note,
+.sec-head p,
+.lede,
+.case-body p,
+.case-body ol li,
+.mini p,
+.did li,
+.practice p,
+.cta-in .sub,
+.pull{
+  text-align:justify;
+  text-justify:inter-word;
+  hyphens:auto;
+  -webkit-hyphens:auto;
+  -ms-hyphens:auto;
+  hyphenate-limit-chars:7 3 3;
+}
+/* the last line of a justified block should never be stretched */
+.thesis p,.hero-note,.lede,.case-body p,.mini p,.practice p,.cta-in .sub{
+  text-align-last:left;
+}
+/* very narrow columns: hyphenate more eagerly so gaps stay small */
+@media (max-width:520px){
+  .thesis p,.hero-note,.sec-head p,.lede,.case-body p,.case-body ol li,
+  .mini p,.did li,.practice p,.cta-in .sub,.pull{hyphenate-limit-chars:6 3 2}
+}
 </style>
 
 <div class="prog" id="prog"></div>
@@ -1030,6 +1063,7 @@ footer p{margin:0;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.18em
 <script>
 (function () {
   var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!document.documentElement.lang) document.documentElement.lang = "en";
 
   /* marquee content */
   var techs = ["LangGraph","Azure AI Foundry","Python","FastAPI","MCP","FAISS","React",
