@@ -444,6 +444,13 @@ footer p{margin:0;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.18em
   .fbtn{padding:11px 15px}
   .rv{transition-duration:.38s}
 }
+
+/* the social buttons ended flush against the marquee band - give the hero
+   real bottom padding so the icons are never clipped by it */
+@media (max-width:900px){
+  .hero-in{padding-bottom:52px}
+  .socials{margin-bottom:4px}
+}
 </style>
 
 <div class="prog" id="prog"></div>
