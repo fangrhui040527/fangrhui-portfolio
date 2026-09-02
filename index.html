@@ -389,6 +389,52 @@ footer p{margin:0;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.18em
   .topo{max-width:112px;margin-bottom:0}
   .mini article{border-right:0}
 }
+
+/* ============ mobile polish pass ============ */
+@media (max-width:900px){
+  /* fold: the whole hero — name, roles, intro, links — inside one screen */
+  .hero-in{gap:16px;padding-top:84px}
+  .portrait{width:min(56%,224px);margin:14px auto 16px}
+  .hi{font-size:clamp(19px,5.2vw,24px);margin-bottom:8px}
+  .hero h1{font-size:clamp(38px,10.6vw,54px);margin-bottom:12px}
+  .tagline{gap:5px;margin-bottom:16px}
+  .tagline b{font-size:clamp(14px,4vw,17px)}
+  .hero-note{font-size:15px;line-height:1.6;margin-bottom:22px;max-width:none}
+  .scrollcue{display:none}
+
+  /* tap targets: nothing below 44px */
+  .pill{min-height:46px;display:inline-flex;align-items:center;justify-content:center}
+  .fbtn{min-height:44px;font-size:13.5px}
+  .mini a.gh{min-height:44px;display:inline-flex;align-items:center;font-size:11px}
+  .case summary{padding:16px 0;font-size:12px}
+  .reach a{padding:24px 4px 26px}
+  .soc{width:52px;height:52px}
+
+  /* labels were 9–11px: too small to read on a phone */
+  .lbl{font-size:11px;letter-spacing:.18em}
+  .tiles .l,.metrics .l,.metricrow .l{font-size:11px;letter-spacing:.12em;line-height:1.45}
+  .topo-cap{font-size:11px;letter-spacing:.1em}
+  .tag{font-size:10.5px;letter-spacing:.12em;padding:5px 10px}
+  .flag-idx{font-size:12px}
+  .case-body h5{font-size:11px;letter-spacing:.16em}
+  .mini .m{font-size:10.5px;letter-spacing:.12em}
+  .slug{font-size:11.5px}
+  .chip{font-size:11.5px}
+  .row-label span{font-size:10.5px}
+  .reach .k{font-size:10.5px}
+  .fcount{font-size:11.5px}
+  footer p{font-size:10.5px}
+
+  /* reveals: shorter travel and duration so nothing lags a fast thumb scroll */
+  .rv{transform:translateY(12px);transition-duration:.45s}
+  section{padding-top:clamp(58px,9vw,88px)}
+  .flag{padding:34px 0 36px}
+  .mini article{padding:26px 24px 28px}
+}
+@media (max-width:420px){
+  .hero h1{font-size:clamp(34px,10vw,44px)}
+  .portrait{width:min(52%,196px)}
+}
 </style>
 
 <div class="prog" id="prog"></div>
@@ -907,6 +953,17 @@ footer p{margin:0;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.18em
       });
     });
   }
+
+  /* failsafe: if rAF is throttled (background tab, slow device) the entrance
+     must never leave the hero blank — force everything visible after 1.6s */
+  setTimeout(function () {
+    document.querySelectorAll(".hero-copy > *, .portrait").forEach(function (el) {
+      el.style.opacity = ""; el.style.transform = ""; el.style.transition = "";
+    });
+    document.querySelectorAll(".rv:not(.in)").forEach(function (el) {
+      if (el.getBoundingClientRect().top < innerHeight * 1.6) el.classList.add("in");
+    });
+  }, 1600);
 
   /* scroll progress */
   var prog = document.getElementById("prog");
