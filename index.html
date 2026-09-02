@@ -451,6 +451,91 @@ footer p{margin:0;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.18em
   .hero-in{padding-bottom:52px}
   .socials{margin-bottom:4px}
 }
+
+/* ================= neon accent + motion layer ================= */
+:root{
+  /* same hue family as --accent, a little more vivid for text only */
+  --accent-neon:#B7E4FF;
+  --glow-s:0 0 8px rgba(120,200,255,.30);
+  --glow-m:0 0 12px rgba(120,200,255,.42), 0 0 30px rgba(120,200,255,.14);
+}
+
+/* every piece of accent-coloured text picks up the lift */
+.sec-head h2 em,
+.cta-in h2 em          { color:var(--accent-neon); text-shadow:var(--glow-m) }
+.tiles .n,
+.metrics .n,
+.metricrow .n          { color:var(--accent-neon); text-shadow:var(--glow-m) }
+.case summary,
+.mini a.gh,
+.job-when b,
+.tag.hot,
+.fcount                { color:var(--accent-neon); text-shadow:var(--glow-s) }
+.nav-links a.on        { color:var(--accent-neon); text-shadow:var(--glow-s) }
+.nav.solid .mark       { color:var(--accent-neon); text-shadow:var(--glow-s) }
+.mini .m               { text-shadow:0 0 6px rgba(120,200,255,.14) }
+
+@media (prefers-reduced-motion:no-preference){
+
+  /* the portrait settles into its frame rather than simply appearing */
+  .portrait img{animation:frameIn 1.05s var(--ease) .2s both}
+  @keyframes frameIn{
+    from{opacity:0;transform:translateY(16px) scale(.968);filter:blur(5px)}
+    to  {opacity:1;transform:none;filter:none}
+  }
+
+  /* the diagonal seam draws itself down the screen on load */
+  .hero-seam svg{animation:seamIn 1.15s var(--ease) .3s both;transform-origin:50% 0}
+  @keyframes seamIn{from{opacity:0;transform:scaleY(.25)}to{opacity:1;transform:none}}
+
+  /* accent words in headings warm up as they arrive */
+  .sec-head.in h2 em,
+  .cta-in h2.in em{animation:glowIn 1.15s ease-out both}
+  @keyframes glowIn{
+    0%  {opacity:.5;text-shadow:none}
+    55% {opacity:1;text-shadow:0 0 20px rgba(120,200,255,.62), 0 0 42px rgba(120,200,255,.24)}
+    100%{opacity:1;text-shadow:var(--glow-m)}
+  }
+
+  /* the counters land instead of just counting */
+  .tiles.in .n{animation:landIn .75s var(--ease) both}
+  .tiles.in div:nth-child(2) .n{animation-delay:.08s}
+  .tiles.in div:nth-child(3) .n{animation-delay:.16s}
+  .tiles.in div:nth-child(4) .n{animation-delay:.24s}
+  @keyframes landIn{
+    from{opacity:0;transform:translateY(12px) scale(.93)}
+    to  {opacity:1;transform:none}
+  }
+
+  /* the eyebrow rule above each section extends itself */
+  .metricrow.in,.metrics.in{animation:none}
+
+  /* pointer devices only — never on touch, where hover sticks */
+  @media (hover:hover) and (pointer:fine){
+    .mini article{transition:background .45s var(--ease),transform .45s var(--ease),
+                             box-shadow .45s var(--ease)}
+    .mini article:hover{transform:translateY(-4px);
+      box-shadow:0 18px 40px rgba(0,0,0,.45)}
+    .flag:hover .topo .hub{filter:drop-shadow(0 0 6px rgba(120,200,255,.7));
+      transition:filter .4s var(--ease)}
+    .tiles div:hover .n{text-shadow:0 0 18px rgba(120,200,255,.6),0 0 40px rgba(120,200,255,.22);
+      transition:text-shadow .4s var(--ease)}
+    .reach a:hover .v{text-shadow:var(--glow-s)}
+    .chip{transition:border-color .35s var(--ease),color .35s var(--ease),
+                     transform .35s var(--ease)}
+    .chip:hover{transform:translateY(-2px)}
+  }
+
+  /* the marquee eases in rather than being mid-slide on arrival */
+  .marquee{animation:fadeUp .9s var(--ease) .55s both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+}
+
+/* the glow is decoration: strip it entirely when motion is unwelcome */
+@media (prefers-reduced-motion:reduce){
+  .sec-head h2 em,.cta-in h2 em,.tiles .n,.metrics .n,.metricrow .n,
+  .case summary,.mini a.gh,.job-when b,.tag.hot,.fcount{text-shadow:none}
+}
 </style>
 
 <div class="prog" id="prog"></div>
