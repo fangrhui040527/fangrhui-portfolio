@@ -435,6 +435,15 @@ footer p{margin:0;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.18em
   .hero h1{font-size:clamp(34px,10vw,44px)}
   .portrait{width:min(52%,196px)}
 }
+
+/* reveal earlier + slightly larger labels so nothing reads as "late" or "tiny" */
+@media (max-width:900px){
+  .tag,.mini .m,.reach .k,.row-label span,.slug,.chip{font-size:11px}
+  .topo text{font-size:10px}
+  .filters{gap:6px;padding-bottom:26px}
+  .fbtn{padding:11px 15px}
+  .rv{transition-duration:.38s}
+}
 </style>
 
 <div class="prog" id="prog"></div>
@@ -1011,7 +1020,7 @@ footer p{margin:0;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.18em
         el.classList.add("in");
         io.unobserve(el);
       });
-    }, { rootMargin: "0px 0px -9% 0px", threshold: 0.06 });
+    }, { rootMargin: "240px 0px 240px 0px", threshold: 0.01 });
     rvs.forEach(function (el) { io.observe(el); });
   }
 
