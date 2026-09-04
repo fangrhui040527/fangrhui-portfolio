@@ -22,7 +22,7 @@
 <link rel="preload" as="image" href="portrait.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 </head>
 <body>
 <style>
@@ -586,6 +586,22 @@ footer p{margin:0;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.16e
   .case-body p,.case-body ol li{font-size:15.5px}
   .did li{font-size:15.5px}
 }
+/* ---------- small-label weight ----------
+   Every label under ~12px was inheriting weight 400. At that size, in a mono
+   face with 0.2em letter-spacing, 400 is genuinely hard to read - the strokes
+   are about a pixel wide on a standard display. 600 is a 50% step up and the
+   weight is now actually loaded, so the browser renders it rather than faking
+   it. Colour was NOT the problem: --faint measures 5.00:1 against the surface,
+   which passes AA on its own. */
+.lbl,.mq-track span,.tiles .l,.metrics .l,.metricrow .l,.flag-idx,.slug,.tag,
+.topo-cap,.case summary,.case-body h5,.chip,.fcount,.mini .m,.mini a.gh,
+.job-when,.row-label span,.reach .k,footer p{font-weight:600}
+
+/* The scroll cue is the one small label whose colour genuinely fails: #56697B
+   is 3.32:1, under the 4.5:1 needed at this size. Weight alone will not carry
+   it, so it moves to --faint (5.00:1) as well. */
+.scrollcue{font-weight:600;color:var(--faint)}
+
 </style>
 
 <div class="prog" id="prog"></div>
