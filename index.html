@@ -36,7 +36,7 @@
   --f-display:'Fraunces','Iowan Old Style',Georgia,serif;
   --f-body:'Manrope','Helvetica Neue',Arial,sans-serif;
   --f-mono:'IBM Plex Mono',ui-monospace,Consolas,monospace;
-  --rail:196px; --pad:clamp(22px,5vw,76px);
+  --rail:196px; --pad:clamp(28px,5vw,76px);
   --ease:cubic-bezier(.22,.68,.26,1);
 }
 *{box-sizing:border-box}
@@ -657,6 +657,29 @@ footer p{margin:0;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.16e
 .more-detail summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .more-detail p{margin-top:6px}
 @media (max-width:900px){ .more-detail summary{font-size:11px;min-height:34px} }
+
+/* ---------- edge breathing room on phones (feedback, 2026-09-04) ----------
+   Reported: text sitting too close to the side of the screen. --pad is
+   clamp(28px,5vw,76px) and 5vw is only 19.5px on a 390px phone, so the floor
+   is what every handset gets - it is the single number that decides the
+   gutter, and it was 22px. Raised to 28px, which changes nothing above about
+   560px where 5vw takes over.
+
+   Safe-area insets are added on top rather than instead: on a notched phone
+   held sideways the inset is real and the gutter alone does not clear it. */
+.wrap{padding-left:max(var(--pad),env(safe-area-inset-left,0px));
+      padding-right:max(var(--pad),env(safe-area-inset-right,0px))}
+.nav-in{padding-left:max(clamp(22px,4.4vw,58px),env(safe-area-inset-left,0px));
+        padding-right:max(clamp(22px,4.4vw,58px),env(safe-area-inset-right,0px))}
+
+/* Nothing may exceed the viewport - one overflowing child produces a
+   horizontal scrollbar and makes every other line look edge-to-edge. */
+html,body{overflow-x:hidden}
+@media (max-width:900px){
+  .flag{padding-left:2px;padding-right:2px}
+  .mini article{padding-left:22px;padding-right:22px}
+  footer .wrap,footer p{overflow-wrap:anywhere}
+}
 
 </style>
 
