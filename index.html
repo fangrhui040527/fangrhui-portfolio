@@ -36,7 +36,7 @@
   --f-display:'Fraunces','Iowan Old Style',Georgia,serif;
   --f-body:'Manrope','Helvetica Neue',Arial,sans-serif;
   --f-mono:'IBM Plex Mono',ui-monospace,Consolas,monospace;
-  --rail:196px; --pad:clamp(28px,5vw,76px);
+  --rail:196px; --pad:clamp(32px,5vw,76px);
   --ease:cubic-bezier(.22,.68,.26,1);
 }
 *{box-sizing:border-box}
@@ -662,8 +662,9 @@ footer p{margin:0;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.16e
    Reported: text sitting too close to the side of the screen. --pad is
    clamp(28px,5vw,76px) and 5vw is only 19.5px on a 390px phone, so the floor
    is what every handset gets - it is the single number that decides the
-   gutter, and it was 22px. Raised to 28px, which changes nothing above about
-   560px where 5vw takes over.
+   gutter. 22px read as text against the bezel; 28px was still tight on a
+   real phone; 32px is the settled value. Nothing changes above 640px, where
+   5vw finally overtakes it.
 
    Safe-area insets are added on top rather than instead: on a notched phone
    held sideways the inset is real and the gutter alone does not clear it. */
@@ -679,6 +680,13 @@ html,body{overflow-x:hidden}
   .flag{padding-left:2px;padding-right:2px}
   .mini article{padding-left:22px;padding-right:22px}
   footer .wrap,footer p{overflow-wrap:anywhere}
+}
+/* A card's own padding stacks on the gutter, so at 32+22 each side a 320px
+   handset is left a 212px column - about 35 characters, which starts breaking
+   long words. Below 380px the card gives its padding back; the gutter is the
+   part that was reported and it stays at 32px. */
+@media (max-width:380px){
+  .mini article{padding-left:14px;padding-right:14px}
 }
 
 </style>
