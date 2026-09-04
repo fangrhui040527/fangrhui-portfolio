@@ -602,6 +602,43 @@ footer p{margin:0;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.16e
    it, so it moves to --faint (5.00:1) as well. */
 .scrollcue{font-weight:600;color:var(--faint)}
 
+/* ---------- mobile nav + filter legibility (feedback, 2026-09-04) ----------
+   Reported from a phone: some sections unreachable, and the filters "have no
+   colour, hard to tell apart". Both were real and both were mobile-specific. */
+
+/* 1. The filter chips. Unselected, the border is --hair (#22222A) on --ground
+      (#0A0A0C): 1.25:1, where a UI outline needs about 3:1. So they render as
+      bare floating text with no button shape. The only rule that gave them a
+      visible edge was :hover - which a touch screen never fires, so on a phone
+      they never became visible at all. Given a real border and a faint fill,
+      they read as buttons without touching the selected state (already a
+      strong 14.6:1). */
+.fbtn{border-color:var(--faint);background:var(--raise);color:var(--ink)}
+.fbtn:hover{background:var(--lift);border-color:var(--accent-dim)}
+.fbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.fbtn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);
+  color:var(--ground);font-weight:700}
+
+/* 2. The navigation. Under 1120px `.nav-links{display:none}` hid About me,
+      Work, Portfolio, Experience and Skills, and nothing replaced them - no
+      hamburger, no menu. The only way to reach a section on a phone was to
+      scroll the whole page. Restored as a single scrollable row rather than a
+      drawer: no JavaScript, no new markup, and every link stays one tap away. */
+@media (max-width:1120px){
+  .nav-links{display:flex;gap:18px;overflow-x:auto;flex:1 1 auto;
+    margin:0 14px;scrollbar-width:none;-ms-overflow-style:none;
+    -webkit-overflow-scrolling:touch;mask-image:linear-gradient(90deg,
+      #000 0,#000 calc(100% - 22px),transparent 100%)}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{white-space:nowrap;font-size:13px;padding:6px 0}
+}
+@media (max-width:560px){
+  .nav-links{gap:14px;margin:0 10px}
+  .nav-links a{font-size:12px}
+  .pill{padding-left:14px;padding-right:14px;font-size:11px}
+  .mark{width:42px;height:42px;font-size:14px}
+}
+
 </style>
 
 <div class="prog" id="prog"></div>
