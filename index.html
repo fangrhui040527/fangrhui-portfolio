@@ -639,6 +639,25 @@ footer p{margin:0;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.16e
   .mark{width:42px;height:42px;font-size:14px}
 }
 
+/* The 20-card grid showed every description in full: 1,129 words in one
+   scroll, which read as a wall. The Work section already solves this with
+   <details>; this applies the same pattern one level down, so the opening
+   sentence stays scannable and the rest is one tap away. Nothing is rewritten
+   and nothing is removed - collapsed text is still in the HTML, so search
+   engines and Ctrl+F both still find it. */
+.more-detail{margin-top:8px}
+.more-detail summary{font-family:var(--f-mono);font-size:10.5px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--accent-dim);
+  cursor:pointer;list-style:none;padding:4px 0;min-height:24px;
+  transition:color .3s var(--ease)}
+.more-detail summary::-webkit-details-marker{display:none}
+.more-detail summary::after{content:" +";font-weight:700}
+.more-detail[open] summary::after{content:" 2"}
+.more-detail summary:hover{color:var(--accent)}
+.more-detail summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.more-detail p{margin-top:6px}
+@media (max-width:900px){ .more-detail summary{font-size:11px;min-height:34px} }
+
 </style>
 
 <div class="prog" id="prog"></div>
@@ -880,67 +899,83 @@ footer p{margin:0;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.16e
   <div class="mini">
     <article class="rv proj" data-kind="client">
       <h4>Tender Evaluation Agent</h4><div class="m">SRKK AI Berhad · Client</div>
-      <p>Eight AI reviewers working together: two read every bid independently, then their scores are combined, compared, summarised and written up. The scoring criteria come from the tender document itself rather than a fixed template, and every score points back to the exact line it came from. The result lands in an editor the team can change before sending.</p>
+      <p>Eight AI reviewers working together: two read every bid independently, then their scores are combined, compared, summarised and written up.</p>
+      <details class="more-detail"><summary>More</summary><p>The scoring criteria come from the tender document itself rather than a fixed template, and every score points back to the exact line it came from. The result lands in an editor the team can change before sending.</p></details>
     </article>
     <article class="rv proj" data-kind="client">
       <h4>Document Drafting Assistant</h4><div class="m">Sarawak Energy Berhad · Client</div>
-      <p>A Microsoft Word add-in that reads a project&rsquo;s decision documents and drafts the paperwork around them, so engineers stop retyping the same figures between files. Five steps &ndash; plan, pull out the facts, check them, write, review &ndash; and it can pause partway for a person to step in, then carry on where it left off.</p>
+      <p>A Microsoft Word add-in that reads a project&rsquo;s decision documents and drafts the paperwork around them, so engineers stop retyping the same figures between files.</p>
+      <details class="more-detail"><summary>More</summary><p>Five steps &ndash; plan, pull out the facts, check them, write, review &ndash; and it can pause partway for a person to step in, then carry on where it left off.</p></details>
     </article>
     <article class="rv proj" data-kind="client">
       <h4>IT Support Helpdesk Voice Agent</h4><div class="m">SRKK AI Berhad · Client</div>
-      <p>Picks up real IT support calls, solves what it can and passes the rest to a technician with the ticket already written. It works out what the caller wants correctly 93% of the time across 19 kinds of request, and a supervisor can approve, edit or reject every reply before the caller hears it.</p>
+      <p>Picks up real IT support calls, solves what it can and passes the rest to a technician with the ticket already written.</p>
+      <details class="more-detail"><summary>More</summary><p>It works out what the caller wants correctly 93% of the time across 19 kinds of request, and a supervisor can approve, edit or reject every reply before the caller hears it.</p></details>
     </article>
     <article class="rv proj" data-kind="client">
       <h4>L&amp;C Compliance Copilot</h4><div class="m">Terumo APAC · Client</div>
-      <p>Compliance staff ask a policy question in their own language and get back the exact rule that applies. It works out which company and country you mean, finds the right policy, flags where two policies disagree, and answers in the language you asked in. Used across the Asia-Pacific region.</p>
+      <p>Compliance staff ask a policy question in their own language and get back the exact rule that applies.</p>
+      <details class="more-detail"><summary>More</summary><p>It works out which company and country you mean, finds the right policy, flags where two policies disagree, and answers in the language you asked in. Used across the Asia-Pacific region.</p></details>
     </article>
     <article class="rv proj" data-kind="hackathon">
       <h4>HealthLens AI</h4><div class="m">Microsoft AI Dev Days 2026</div>
-      <p>Photograph a food label and seven AI specialists &ndash; a doctor, a nutritionist, a food chemist, a fitness coach and others &ndash; each give a verdict, then a final one decides. Safety comes first: if the doctor or the halal check raises a problem, the answer is Avoid no matter how good the nutrition looks. Results appear on your phone one specialist at a time.</p>
+      <p>Photograph a food label and seven AI specialists &ndash; a doctor, a nutritionist, a food chemist, a fitness coach and others &ndash; each give a verdict, then a final one decides.</p>
+      <details class="more-detail"><summary>More</summary><p>Safety comes first: if the doctor or the halal check raises a problem, the answer is Avoid no matter how good the nutrition looks. Results appear on your phone one specialist at a time.</p></details>
     </article>
     <article class="rv proj" data-kind="production">
       <h4>Google Ads Monitor + Agent</h4><div class="m">Rakyat Fintech · Production</div>
-      <p>A rebuild of Google&rsquo;s own campaign dashboard, with an assistant that suggests changes to your adverts. Every change is rehearsed first and needs a person to approve it. Where Google does not provide the data for a panel, the screen says so rather than showing a made-up number.</p>
+      <p>A rebuild of Google&rsquo;s own campaign dashboard, with an assistant that suggests changes to your adverts.</p>
+      <details class="more-detail"><summary>More</summary><p>Every change is rehearsed first and needs a person to approve it. Where Google does not provide the data for a panel, the screen says so rather than showing a made-up number.</p></details>
     </article>
     <article class="rv proj" data-kind="hackathon">
       <h4>YokoYoko AI</h4><div class="m">MyHack 2026 · GDG KL · Team of 3</div>
-      <p>Matches mentors to start-ups in an accelerator programme and explains why each pairing scored the way it did. It reads CVs from PDF files and listens to short introduction videos to build each profile, then weighs up five things: industry, the help needed, how far along the company is, language, and how much time the mentor has.</p>
+      <p>Matches mentors to start-ups in an accelerator programme and explains why each pairing scored the way it did.</p>
+      <details class="more-detail"><summary>More</summary><p>It reads CVs from PDF files and listens to short introduction videos to build each profile, then weighs up five things: industry, the help needed, how far along the company is, language, and how much time the mentor has.</p></details>
     </article>
     <article class="rv proj" data-kind="hackathon">
       <h4>MarioEval</h4><div class="m">Google DeepMind Featured Hackathon</div>
-      <p>A test that drops leading AI models into randomly built maze games where they can only see what is nearby, then measures how well they plan ahead, remember what they have seen, and resist hidden instructions planted to trick them. Seven levels of difficulty.</p>
+      <p>A test that drops leading AI models into randomly built maze games where they can only see what is nearby, then measures how well they plan ahead, remember what they have seen, and resist hidden instructions planted to trick them.</p>
+      <details class="more-detail"><summary>More</summary><p>Seven levels of difficulty.</p></details>
     </article>
     <article class="rv proj" data-kind="independent">
       <h4>FraudShield</h4><div class="m">Personal project · Python + React</div>
-      <p>Scam-email detection built into a school&rsquo;s Outlook mailboxes. Before the AI reads anything, the system checks the technical signs of a forged sender and looks for web addresses designed to imitate real ones. When staff correct a wrong decision, it learns overnight and adjusts how cautious it should be.</p>
+      <p>Scam-email detection built into a school&rsquo;s Outlook mailboxes.</p>
+      <details class="more-detail"><summary>More</summary><p>Before the AI reads anything, the system checks the technical signs of a forged sender and looks for web addresses designed to imitate real ones. When staff correct a wrong decision, it learns overnight and adjusts how cautious it should be.</p></details>
     </article>
     <article class="rv proj" data-kind="rnd">
       <h4>Catalog Agent</h4><div class="m">SRKK AI Berhad · R&amp;D</div>
-      <p>Ask about products in plain language and get real answers. If your question could mean two things, it asks which you meant instead of guessing. It remembers where you left off, can replay how it reached an answer, and will alert you when a price changes.</p>
+      <p>Ask about products in plain language and get real answers.</p>
+      <details class="more-detail"><summary>More</summary><p>If your question could mean two things, it asks which you meant instead of guessing. It remembers where you left off, can replay how it reached an answer, and will alert you when a price changes.</p></details>
     </article>
     <article class="rv proj" data-kind="rnd">
       <h4>SPM Tuition Tutors</h4><div class="m">SRKK AI Berhad · R&amp;D</div>
-      <p>Malaysian SPM students ask a question and it goes to the right subject tutor: chemistry, physics, maths or biology. Each tutor has real working tools, including a chemistry calculator and a physics motion solver, and a separate examiner sets practice papers based on what the student has already covered.</p>
+      <p>Malaysian SPM students ask a question and it goes to the right subject tutor: chemistry, physics, maths or biology.</p>
+      <details class="more-detail"><summary>More</summary><p>Each tutor has real working tools, including a chemistry calculator and a physics motion solver, and a separate examiner sets practice papers based on what the student has already covered.</p></details>
     </article>
     <article class="rv proj" data-kind="independent">
       <h4>Shopee Review Analyst</h4><div class="m">Personal project · Python</div>
-      <p>Turns online marketplace reviews into competitor research. It scans a whole product category cheaply, ranks items by how much they sell, then only pays to read reviews in depth for the best sellers &ndash; so the bill follows the shortlist rather than the whole catalogue, and stops at a set limit.</p>
+      <p>Turns online marketplace reviews into competitor research.</p>
+      <details class="more-detail"><summary>More</summary><p>It scans a whole product category cheaply, ranks items by how much they sell, then only pays to read reviews in depth for the best sellers &ndash; so the bill follows the shortlist rather than the whole catalogue, and stops at a set limit.</p></details>
     </article>
     <article class="rv proj" data-kind="independent">
       <h4>Study Assistant Platform</h4><div class="m">Independent · Azure AI Search</div>
-      <p>Five tutors that answer only from a student&rsquo;s own notes and slides, and can set quizzes and full mock exams then mark them. If a paid service is unavailable, every feature falls back to a free version rather than breaking.</p>
+      <p>Five tutors that answer only from a student&rsquo;s own notes and slides, and can set quizzes and full mock exams then mark them.</p>
+      <details class="more-detail"><summary>More</summary><p>If a paid service is unavailable, every feature falls back to a free version rather than breaking.</p></details>
     </article>
     <article class="rv proj" data-kind="hackathon">
       <h4>TalentBank Learning Wallet</h4><div class="m">TalentBank Hackathon 2026 · Team of 2</div>
-      <p>Badges earned at real events are recorded permanently on a blockchain, so a student has proof of what they have done that cannot be faked or handed to someone else. Signing in with Google is enough &ndash; there is no long secret phrase to lose. A phone app for students, a web dashboard for organisers.</p>
+      <p>Badges earned at real events are recorded permanently on a blockchain, so a student has proof of what they have done that cannot be faked or handed to someone else.</p>
+      <details class="more-detail"><summary>More</summary><p>Signing in with Google is enough &ndash; there is no long secret phrase to lose. A phone app for students, a web dashboard for organisers.</p></details>
     </article>
     <article class="rv proj" data-kind="rnd">
       <h4>SQL Database Agent</h4><div class="m">SRKK AI Berhad · R&amp;D</div>
-      <p>Ask a database a question in plain English and get a real, working query back rather than a description of one. It learns the shape of the database and a set of correct examples first. Built with a simple web page so people who do not write code can use it.</p>
+      <p>Ask a database a question in plain English and get a real, working query back rather than a description of one.</p>
+      <details class="more-detail"><summary>More</summary><p>It learns the shape of the database and a set of correct examples first. Built with a simple web page so people who do not write code can use it.</p></details>
     </article>
     <article class="rv proj" data-kind="rnd">
       <h4>SQL Expenses Agent</h4><div class="m">SRKK AI Berhad · R&amp;D</div>
-      <p>Ask questions about a spending table, or change it, just by typing normally. It runs entirely on the computer in front of you &ndash; no cloud service and no accounts &ndash; with firm limits on what it is allowed to change.</p>
+      <p>Ask questions about a spending table, or change it, just by typing normally.</p>
+      <details class="more-detail"><summary>More</summary><p>It runs entirely on the computer in front of you &ndash; no cloud service and no accounts &ndash; with firm limits on what it is allowed to change.</p></details>
     </article>
     <article class="rv proj" data-kind="ml">
       <h4>Life Expectancy Prediction</h4><div class="m">Python · Dec 2025</div>
